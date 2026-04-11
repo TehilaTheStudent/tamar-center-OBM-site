@@ -10,7 +10,7 @@ import Testimonials from "./Testimonials.jsx";
 
 import Contact from "./Contact.jsx";
 
-import { HashRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
     

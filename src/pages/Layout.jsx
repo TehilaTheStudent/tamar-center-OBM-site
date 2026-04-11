@@ -47,7 +47,7 @@ export default function Layout({ children, currentPageName }) {
             <Link to={createPageUrl("Home")} className="flex items-center gap-4">
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68e240583b0887a22239a7f7/5354dfc39_LOGO-.png" 
-                alt="תמר שכטר לוגו" 
+                alt="תמר שכטר - יועצת התנהגות ארגונית OBM לוגו" 
                 className="h-16 md:h-20 w-auto"
               />
               <div>
@@ -142,7 +142,7 @@ export default function Layout({ children, currentPageName }) {
               <div className="flex items-center gap-3 mb-4">
                 <img 
                   src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68e240583b0887a22239a7f7/5354dfc39_LOGO-.png" 
-                  alt="תמר שכטר" 
+                  alt="תמר שכטר - יועצת התנהגות ארגונית OBM" 
                   className="h-12 w-auto"
                 />
                 <div className="text-lg font-bold text-white">תמר שכטר</div>

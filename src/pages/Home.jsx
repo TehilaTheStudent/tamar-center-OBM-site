@@ -20,7 +20,7 @@ export default function HomePage() {
         <div className="absolute inset-0 z-0">
           <img 
             src="/Image-home.png" 
-            alt="משרד מקצועי"
+            alt="תמר שכטר - יועצת התנהגות ארגונית OBM - ליווי ארגונים לשיפור ביצועים"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/70 to-slate-950"></div>
