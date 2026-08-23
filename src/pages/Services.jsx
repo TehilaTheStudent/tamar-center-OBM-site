@@ -11,7 +11,7 @@ export default function ServicesPage() {
       icon: <User className="w-12 h-12" />,
       title: "ליווי מנהלים אישי",
       subtitle: "1-on-1 Coaching",
-      color: "orange",
+      color: "brand",
       // Removed image property
       target: "למי זה מתאים?",
       targetDesc: "למנהלים ובעלי עסקים שרוצים לשפר את היכולות הניהוליות שלהם, להתמודד עם אתגרים ספציפיים, ולהוביל את הצוות בצורה יותר אפקטיבית.",
@@ -36,7 +36,7 @@ export default function ServicesPage() {
       icon: <Building2 className="w-12 h-12" />,
       title: "ליווי ארגוני מקיף",
       subtitle: "תהליך מלא להצלחה ארגונית",
-      color: "blue",
+      color: "accent",
       // Removed image property
       target: "למי זה מתאים?",
       targetDesc: "לארגונים בינוניים וגדולים (מ-5 עובדים ומעלה), עמותות, ועסקים בצמיחה שרוצים לעשות שינוי אמיתי בכל הארגון.",
@@ -76,7 +76,7 @@ export default function ServicesPage() {
       icon: <Presentation className="w-12 h-12" />,
       title: "הרצאות וסדנאות",
       subtitle: "העשרה והדרכה לצוותים",
-      color: "orange",
+      color: "brand",
       // Removed image property
       target: "למי זה מתאים?",
       targetDesc: "לארגונים שרוצים להעשיר את הצוות בכלים מעשיים, ליצור תובנות, ולחזק את התרבות הארגונית.",
@@ -106,12 +106,12 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="bg-slate-950 text-white min-h-screen">
+    <div className="bg-[#0c1829] text-white min-h-screen">
       {/* Hero */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           {/* Removed background image for Hero section */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/90 to-slate-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0c1829] via-[#0c1829]/90 to-[#0c1829]"></div>
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -131,7 +131,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Services */}
-      <section className="py-16 bg-gradient-to-b from-slate-950 to-slate-900">
+      <section className="py-16 bg-gradient-to-b from-[#0c1829] to-[#0a1424]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           {services.map((service, index) => (
             <motion.div
@@ -141,11 +141,11 @@ export default function ServicesPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className={`bg-gradient-to-br ${
-                service.color === 'orange'
-                  ? 'from-orange-500/10 to-slate-800/50'
-                  : 'from-blue-500/10 to-slate-800/50'
+                service.color === 'brand'
+                  ? 'from-brand-600/10 to-slate-800/50'
+                  : 'from-brand-500/10 to-slate-800/50'
               } backdrop-blur border ${
-                service.color === 'orange' ? 'border-orange-500/20' : 'border-blue-500/20'
+                service.color === 'brand' ? 'border-brand-600/20' : 'border-brand-500/20'
               } rounded-3xl overflow-hidden`}
             >
               {/* Conditional rendering of service.image block. Since images are removed from data, this will no longer render. */}
@@ -156,21 +156,21 @@ export default function ServicesPage() {
                     alt={service.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c1829] via-[#0c1829]/50 to-transparent"></div>
                 </div>
               )}
               
               <div className="p-8 md:p-12">
                 <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
                   <div className={`p-4 rounded-2xl ${
-                    service.color === 'orange' ? 'bg-orange-500/20 text-orange-400' : 'bg-blue-500/20 text-blue-400'
+                    service.color === 'brand' ? 'bg-brand-600/20 text-brand-400' : 'bg-brand-500/20 text-brand-300'
                   }`}>
                     {service.icon}
                   </div>
                   <div className="flex-1">
                     <h2 className="text-3xl md:text-4xl font-bold mb-2">{service.title}</h2>
                     <p className={`text-lg ${
-                      service.color === 'orange' ? 'text-orange-400' : 'text-blue-400'
+                      service.color === 'brand' ? 'text-brand-400' : 'text-brand-300'
                     }`}>
                       {service.subtitle}
                     </p>
@@ -179,7 +179,7 @@ export default function ServicesPage() {
 
                 <div className="space-y-8">
                   {/* Target Audience */}
-                  <div className="bg-slate-900/50 rounded-2xl p-6">
+                  <div className="bg-[#0a1424]/50 rounded-2xl p-6">
                     <h3 className="text-2xl font-bold mb-4 text-white">{service.target}</h3>
                     <p className="text-lg text-slate-300 leading-relaxed">{service.targetDesc}</p>
                   </div>
@@ -191,9 +191,9 @@ export default function ServicesPage() {
                       <p className="text-lg text-slate-300 mb-4">עבודה אחד על אחד ממוקדת בנושאים כמו:</p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {service.includes.map((item, i) => (
-                          <div key={i} className="flex items-center gap-3 bg-slate-900/30 rounded-lg p-3">
+                          <div key={i} className="flex items-center gap-3 bg-[#0a1424]/30 rounded-lg p-3">
                             {/* Fixed duplicate className prop */}
-                            <CheckCircle className={`w-5 h-5 flex-shrink-0 ${service.color === 'orange' ? 'text-orange-400' : 'text-blue-400'}`} />
+                            <CheckCircle className={`w-5 h-5 flex-shrink-0 ${service.color === 'brand' ? 'text-brand-400' : 'text-brand-300'}`} />
                             <span className="text-slate-300">{item}</span>
                           </div>
                         ))}
@@ -207,12 +207,12 @@ export default function ServicesPage() {
                       <p className="text-lg text-slate-300 mb-6">תהליך מקיף בן 4 שלבים:</p>
                       <div className="space-y-6">
                         {service.phases.map((phase, i) => (
-                          <div key={i} className="bg-slate-900/50 rounded-xl p-6"> {/* Removed overflow-hidden and image block */}
+                          <div key={i} className="bg-[#0a1424]/50 rounded-xl p-6"> {/* Removed overflow-hidden and image block */}
                             <div className="flex items-start gap-4">
                               <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 ${
-                                service.color === 'orange' 
-                                  ? 'bg-orange-500 text-white' 
-                                  : 'bg-blue-500 text-white'
+                                service.color === 'brand' 
+                                  ? 'bg-brand-600 text-white' 
+                                  : 'bg-brand-500 text-white'
                               }`}>
                                 {i + 1}
                               </div>
@@ -232,9 +232,9 @@ export default function ServicesPage() {
                       <h3 className="text-2xl font-bold mb-6">נושאי ההרצאות והסדנאות:</h3>
                       <div className="space-y-6">
                         {service.topics.map((topic, i) => (
-                          <div key={i} className="bg-slate-900/50 rounded-xl p-6"> {/* Removed overflow-hidden and image block */}
+                          <div key={i} className="bg-[#0a1424]/50 rounded-xl p-6"> {/* Removed overflow-hidden and image block */}
                             <h4 className={`text-xl font-bold mb-4 ${
-                              service.color === 'orange' ? 'text-orange-400' : 'text-blue-400'
+                              service.color === 'brand' ? 'text-brand-400' : 'text-brand-300'
                             }`}>
                               {topic.category}
                             </h4>
@@ -257,9 +257,9 @@ export default function ServicesPage() {
                       <h3 className="text-2xl font-bold mb-4">פורמטים:</h3>
                       <div className="space-y-3">
                         {service.formats.map((format, i) => (
-                          <div key={i} className="flex items-start gap-3 bg-slate-900/30 rounded-lg p-4">
+                          <div key={i} className="flex items-start gap-3 bg-[#0a1424]/30 rounded-lg p-4">
                             <div className={`w-2 h-2 rounded-full mt-2 ${
-                              service.color === 'orange' ? 'bg-orange-400' : 'bg-blue-400'
+                              service.color === 'brand' ? 'bg-brand-400' : 'bg-brand-300'
                             }`}></div>
                             <span className="text-slate-300 text-lg">{format}</span>
                           </div>
@@ -275,13 +275,13 @@ export default function ServicesPage() {
 
                   {/* Results */}
                   {service.results && (
-                    <div className="bg-gradient-to-r from-slate-900/80 to-slate-800/80 rounded-2xl p-6">
+                    <div className="bg-gradient-to-r from-[#0a1424]/80 to-slate-800/80 rounded-2xl p-6">
                       <h3 className="text-2xl font-bold mb-4">התוצאות:</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {service.results.map((result, i) => (
                           <div key={i} className="flex items-center gap-3">
                             {/* Fixed duplicate className prop */}
-                            <CheckCircle className={`w-6 h-6 flex-shrink-0 ${service.color === 'orange' ? 'text-orange-400' : 'text-blue-400'}`} />
+                            <CheckCircle className={`w-6 h-6 flex-shrink-0 ${service.color === 'brand' ? 'text-brand-400' : 'text-brand-300'}`} />
                             <span className="text-slate-200 font-medium">{result}</span>
                           </div>
                         ))}
@@ -292,9 +292,9 @@ export default function ServicesPage() {
                   {/* Duration & Format */}
                   <div className="flex flex-col md:flex-row gap-4">
                     {service.duration && (
-                      <div className="flex-1 bg-slate-900/50 rounded-xl p-4 flex items-center gap-3">
+                      <div className="flex-1 bg-[#0a1424]/50 rounded-xl p-4 flex items-center gap-3">
                         {/* Fixed duplicate className prop */}
-                        <Clock className={`w-6 h-6 ${service.color === 'orange' ? 'text-orange-400' : 'text-blue-400'}`} />
+                        <Clock className={`w-6 h-6 ${service.color === 'brand' ? 'text-brand-400' : 'text-brand-300'}`} />
                         <div>
                           <div className="text-sm text-slate-400">משך הליווי</div>
                           <div className="text-white font-semibold">{service.duration}</div>
@@ -302,9 +302,9 @@ export default function ServicesPage() {
                       </div>
                     )}
                     {service.format && (
-                      <div className="flex-1 bg-slate-900/50 rounded-xl p-4 flex items-center gap-3">
+                      <div className="flex-1 bg-[#0a1424]/50 rounded-xl p-4 flex items-center gap-3">
                         {/* Fixed duplicate className prop */}
-                        <Users className={`w-6 h-6 ${service.color === 'orange' ? 'text-orange-400' : 'text-blue-400'}`} />
+                        <Users className={`w-6 h-6 ${service.color === 'brand' ? 'text-brand-400' : 'text-brand-300'}`} />
                         <div>
                           <div className="text-sm text-slate-400">אופן העבודה</div>
                           <div className="text-white font-semibold">{service.format}</div>
@@ -320,45 +320,45 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-slate-950">
+      <section className="py-20 bg-[#0c1829]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-orange-500/20 to-blue-500/20 backdrop-blur border border-orange-500/30 rounded-3xl p-12 text-center"
+            className="bg-gradient-to-r from-brand-600/20 to-brand-500/20 backdrop-blur border border-brand-600/30 rounded-3xl p-12 text-center"
           >
             <h2 className="text-4xl font-bold mb-6">איך מתחילים?</h2>
             <p className="text-xl text-slate-300 mb-4 leading-relaxed">
               בואו נבדוק ביחד איך אפשר לייעל, לחזק ולהניע את האנשים בארגון שלכם
             </p>
-            <h3 className="text-2xl font-bold text-orange-400 mb-6">הזמינו פגישת ייעוץ ראשונה ללא עלות</h3>
-            <div className="bg-slate-900/50 rounded-2xl p-6 mb-8 text-right max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-brand-400 mb-6">הזמינו פגישת ייעוץ ראשונה ללא עלות</h3>
+            <div className="bg-[#0a1424]/50 rounded-2xl p-6 mb-8 text-right max-w-2xl mx-auto">
               <p className="text-lg text-slate-300 mb-3">בשיחה נבדוק יחד:</p>
               <ul className="space-y-2 text-slate-300">
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="text-orange-400 w-5 h-5 flex-shrink-0 mt-1" />
+                  <CheckCircle className="text-brand-400 w-5 h-5 flex-shrink-0 mt-1" />
                   <span>מה המצב הנוכחי והאתגרים המרכזיים</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="text-orange-400 w-5 h-5 flex-shrink-0 mt-1" />
+                  <CheckCircle className="text-brand-400 w-5 h-5 flex-shrink-0 mt-1" />
                   <span>מה המטרות שלכם</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="text-orange-400 w-5 h-5 flex-shrink-0 mt-1" />
+                  <CheckCircle className="text-brand-400 w-5 h-5 flex-shrink-0 mt-1" />
                   <span>איזה שירות יתאים בדיוק לצרכים שלכם</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="text-orange-400 w-5 h-5 flex-shrink-0 mt-1" />
+                  <CheckCircle className="text-brand-400 w-5 h-5 flex-shrink-0 mt-1" />
                   <span>איך תראה העבודה המשותפת</span>
                 </li>
               </ul>
             </div>
             <Link
               to={createPageUrl("Contact")}
-              className="inline-block px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-2xl shadow-orange-500/40 text-xl"
+              className="inline-block px-10 py-5 bg-gradient-to-r from-brand-600 to-brand-700 text-white font-bold rounded-xl hover:from-brand-700 hover:to-brand-800 transition-all duration-300 shadow-2xl shadow-brand-600/40 text-xl"
             >
-              לשיחת ייעוץ חינם ←
+              לפגישת ייעוץ חינם ←
             </Link>
           </motion.div>
         </div>
