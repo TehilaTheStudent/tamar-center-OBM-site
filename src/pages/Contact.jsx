@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitContactForm } from "@/api/contactForm";
+import { CONTACT_EMAIL, contactEmailLinkProps } from "@/utils";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -118,8 +119,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <div className="text-sm text-slate-400">דוא"ל</div>
-                    <a href="mailto:TAMAR@OBM.CO.IL" className="text-lg font-semibold hover:text-brand-400 transition-colors" dir="ltr">
-                      TAMAR@OBM.CO.IL
+                    <a {...contactEmailLinkProps} className="text-lg font-semibold hover:text-brand-400 transition-colors" dir="ltr">
+                      {CONTACT_EMAIL}
                     </a>
                   </div>
                 </motion.div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { createPageUrl } from "@/utils";
+import { createPageUrl, CONTACT_EMAIL, contactEmailLinkProps } from "@/utils";
 import { motion } from "framer-motion";
 
 export default function AccessibilityPage() {
@@ -39,8 +39,8 @@ export default function AccessibilityPage() {
               <ul className="space-y-2">
                 <li>
                   דוא״ל:{" "}
-                  <a href="mailto:TAMAR@OBM.CO.IL" className="text-brand-400 hover:underline" dir="ltr">
-                    TAMAR@OBM.CO.IL
+                  <a {...contactEmailLinkProps} className="text-brand-400 hover:underline" dir="ltr">
+                    {CONTACT_EMAIL}
                   </a>
                 </li>
                 <li>

@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { createPageUrl } from "@/utils";
+import { createPageUrl, CONTACT_EMAIL, contactEmailLinkProps } from "@/utils";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
 
 export default function Layout({ children, currentPageName }) {
@@ -215,8 +215,8 @@ export default function Layout({ children, currentPageName }) {
               <div className="text-slate-400 text-sm space-y-2">
                 <p>
                   📧{" "}
-                  <a href="mailto:TAMAR@OBM.CO.IL" className="hover:text-brand-400 transition-colors" dir="ltr">
-                    TAMAR@OBM.CO.IL
+                  <a {...contactEmailLinkProps} className="hover:text-brand-400 transition-colors" dir="ltr">
+                    {CONTACT_EMAIL}
                   </a>
                 </p>
                 <p dir="ltr">
