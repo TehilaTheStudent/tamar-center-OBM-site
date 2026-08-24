@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { SendEmail } from "@/api/integrations";
+import { submitContactForm } from "@/api/contactForm";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,42 +13,31 @@ export default function ContactPage() {
     email: "",
     phone: "",
     company: "",
-    message: ""
+    message: "",
+    botcheck: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
+
+    if (formData.botcheck) {
+      return;
+    }
+
     setIsSubmitting(true);
 
-    const emailBody = `פנייה חדשה מהאתר של תמר שכטר
-
-שם: ${formData.name}
-דוא"ל: ${formData.email}
-טלפון: ${formData.phone}
-${formData.company ? `ארגון/עסק: ${formData.company}` : ''}
-
-הודעה:
-${formData.message}
-    `;
-    
     try {
-      await SendEmail({
-        from_name: "אתר תמר שכטר",
-        to: "TAMAR@OBM.CO.IL",
-        subject: `פנייה חדשה מ-${formData.name}`,
-        body: emailBody
-      });
-
+      await submitContactForm(formData);
       setIsSubmitted(true);
     } catch (error) {
-      console.error("Error sending email:", error);
-      // Fallback: open the user's mail client if the API fails
-      const subject = encodeURIComponent(`פנייה חדשה מ-${formData.name}`);
-      const body = encodeURIComponent(emailBody);
-      window.location.href = `mailto:TAMAR@OBM.CO.IL?subject=${subject}&body=${body}`;
-      setIsSubmitted(true);
+      console.error("Error sending contact form:", error);
+      setSubmitError(
+        error.message || "שליחת הטופס נכשלה. נסו שוב או צרו קשר בטלפון / WhatsApp."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -67,9 +56,11 @@ ${formData.message}
       email: "",
       phone: "",
       company: "",
-      message: ""
+      message: "",
+      botcheck: ""
     });
     setIsSubmitted(false);
+    setSubmitError("");
   };
 
   return (
@@ -216,6 +207,18 @@ ${formData.message}
                 <>
                   <h2 className="text-3xl font-bold mb-6">שלחו לי פרטים</h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot — hidden from users, catches bots */}
+                    <input
+                      type="text"
+                      name="botcheck"
+                      value={formData.botcheck}
+                      onChange={handleChange}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      className="hidden"
+                      aria-hidden="true"
+                    />
+
                     <div>
                       <Label htmlFor="name" className="text-slate-300 mb-2 block">שם מלא *</Label>
                       <Input
@@ -282,6 +285,12 @@ ${formData.message}
                         placeholder="מה מוביל אתכם לחפש ייעוץ ארגוני? מה האתגרים המרכזיים?"
                       />
                     </div>
+
+                    {submitError && (
+                      <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 rounded-xl p-4" role="alert">
+                        {submitError}
+                      </p>
+                    )}
 
                     <Button
                       type="submit"
