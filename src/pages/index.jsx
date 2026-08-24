@@ -10,6 +10,8 @@ import Testimonials from "./Testimonials.jsx";
 
 import Contact from "./Contact.jsx";
 
+import Accessibility from "./Accessibility.jsx";
+
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 const PAGES = {
@@ -23,6 +25,8 @@ const PAGES = {
     Testimonials: Testimonials,
     
     Contact: Contact,
+
+    Accessibility: Accessibility,
     
 }
 
@@ -60,6 +64,9 @@ function PagesContent() {
                 <Route path="/Testimonials" element={<Testimonials />} />
                 
                 <Route path="/Contact" element={<Contact />} />
+                
+                <Route path="/Accessibility" element={<Accessibility />} />
+                <Route path="/accessibility" element={<Accessibility />} />
                 <Route path="*" element={<Home />} />
             </Routes>
         </Layout>
