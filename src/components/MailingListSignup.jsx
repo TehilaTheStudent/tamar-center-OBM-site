@@ -88,7 +88,7 @@ export default function MailingListSignup() {
                   />
                 </label>
                 <label className="block text-sm text-slate-300">
-                  סלולרי
+                  טלפון
                   <input
                     type="tel"
                     name="cellphone"
