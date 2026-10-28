@@ -80,8 +80,7 @@ export default function MailingListSignup() {
         event.stopPropagation();
         openMailingForm();
       }}
-      className="fixed left-0 top-1/2 z-[60] -translate-y-1/2 rounded-r-lg bg-brand-600 px-2 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 hover:bg-brand-700"
-      style={{ writingMode: "vertical-rl" }}
+      className="fixed bottom-24 left-0 z-[60] rounded-r-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 hover:bg-brand-700"
     >
       מעוניינים להצטרף לרשימת דיוור
     </button>
