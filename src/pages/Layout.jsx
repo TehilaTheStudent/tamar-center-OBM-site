@@ -3,6 +3,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl, CONTACT_EMAIL, contactEmailLinkProps } from "@/utils";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
+import MailingListSignup from "@/components/MailingListSignup";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
@@ -254,6 +255,7 @@ export default function Layout({ children, currentPageName }) {
       </footer>
 
       <AccessibilityWidget />
+      <MailingListSignup />
     </div>
   );
 }
