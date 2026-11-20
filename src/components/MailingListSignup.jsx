@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 
 const POPUP_DELAY_MS = 5000;
 const SESSION_KEY = "obm-mailing-popup-shown";
-const SENDMSG_ACTION = "https://panel.sendmsg.co.il/AddUserFromSite.aspx";
-const SENDMSG_FORM = "346288__ff204751-df30-4c09-a580-db6b7d531114";
 const LABEL = "מעוניינים להצטרף לרשימת דיוור";
+const ERROR_TEXT = "לא הצלחנו לרשום אתכם לרשימת הדיוור. נסו שוב.";
 
 const fieldClass =
   "w-full rounded-lg border border-slate-700 bg-[#0a1424] px-3 py-2.5 text-white outline-none focus:border-brand-600";
@@ -12,6 +11,8 @@ const fieldClass =
 export default function MailingListSignup() {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (sessionStorage.getItem(SESSION_KEY) === "1") return undefined;
@@ -28,6 +29,38 @@ export default function MailingListSignup() {
   };
 
   const close = () => setOpen(false);
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    setSending(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/mailing-list", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("eMail"),
+          phone: data.get("cellphone"),
+        }),
+      });
+      const result = await response.json().catch(() => null);
+      if (!response.ok || !result?.ok) {
+        setError(ERROR_TEXT);
+        return;
+      }
+      setSent(true);
+    } catch {
+      setError(ERROR_TEXT);
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <>
@@ -68,22 +101,17 @@ export default function MailingListSignup() {
             {sent ? (
               <p className="text-slate-200">נרשמתם לרשימת הדיוור</p>
             ) : (
-              <form
-                action={SENDMSG_ACTION}
-                method="post"
-                target="obm-mailing-result"
-                className="space-y-4"
-                onSubmit={() => setSent(true)}
-              >
-                <input type="hidden" name="form" value={SENDMSG_FORM} />
+              <form className="space-y-4" onSubmit={onSubmit}>
                 <label className="block text-sm text-slate-300">
                   מייל
                   <input
                     type="email"
                     name="eMail"
                     required
+                    maxLength={250}
                     dir="ltr"
                     autoComplete="email"
+                    disabled={sending}
                     className={`${fieldClass} mt-1.5`}
                   />
                 </label>
@@ -93,21 +121,35 @@ export default function MailingListSignup() {
                     type="tel"
                     name="cellphone"
                     required
+                    maxLength={250}
                     dir="ltr"
                     autoComplete="tel"
+                    disabled={sending}
                     className={`${fieldClass} mt-1.5`}
                   />
                 </label>
+                <label className="block text-sm text-slate-300">
+                  שם
+                  <input
+                    type="text"
+                    name="name"
+                    maxLength={250}
+                    autoComplete="name"
+                    disabled={sending}
+                    className={`${fieldClass} mt-1.5`}
+                  />
+                </label>
+                {error && <p className="text-sm text-red-300">{error}</p>}
                 <button
                   type="submit"
-                  className="w-full rounded-lg bg-gradient-to-r from-brand-600 to-brand-700 py-3 font-semibold text-white shadow-lg shadow-brand-600/30 hover:from-brand-700 hover:to-brand-800"
+                  disabled={sending}
+                  className="w-full rounded-lg bg-gradient-to-r from-brand-600 to-brand-700 py-3 font-semibold text-white shadow-lg shadow-brand-600/30 hover:from-brand-700 hover:to-brand-800 disabled:opacity-60"
                 >
-                  הצטרפות
+                  {sending ? "שולחים…" : "הצטרפות"}
                 </button>
               </form>
             )}
           </div>
-          <iframe name="obm-mailing-result" title="mailing-list-result" className="hidden" />
         </div>
       )}
     </>
